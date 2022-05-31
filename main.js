@@ -21,7 +21,6 @@ for (let customer of customers) {
     customerElement.appendChild(imageElement)
 
 
-
     //name**WORKING** 
     let nameElement = document.createElement('h1')
     nameElement.classList.add("f3", "mb2")
@@ -30,15 +29,28 @@ for (let customer of customers) {
 
 
     //email address**WORKING**
-    let writeElement = document.createElement('h2')
-    writeElement.classList.add("f5", "fw4", "gray", "mt0")
-    writeElement.innerText = `${customer.email}`
-    customerElement.appendChild(writeElement)
+    let emailElement = document.createElement('h2')
+    emailElement.classList.add("f5", "fw4", "gray", "mt0")
+    emailElement.innerText = `${customer.email}`
+    customerElement.appendChild(emailElement)
 
-    //street address
-    //city, state, zip
-    //dob mon date, year
-    //customer since: mon, date, year
+    //address**WORKING**
+    let streetElement = document.createElement('h2')
+    streetElement.classList.add("f5", "fw4", "black", "mt0")
+    streetElement.innerText = `${customer.location.street.number} ${customer.location.street.name} \n ${customer.location.city}, ${customer.location.state} ${customer.location.postcode}`
+    customerElement.appendChild(streetElement)
+
+    //dob mon date, year**WORKING - NEEDS TO BE FORMATTED**
+    let dobElement = document.createElement('h2')
+    dobElement.classList.add("f5", "fw4", "black", "mt0")
+    dobElement.innerText = `DOB: ${customer.dob.date}`
+    customerElement.appendChild(dobElement)
+
+    //customer since: mon, date, year**WORKING - NEEDS TO BE REFORMATTED**
+    let enrollElement = document.createElement('h2')
+    enrollElement.classList.add("f5", "fw4", "black", "mt0")
+    enrollElement.innerText = `Customer since: ${customer.registered.date}`
+    customerElement.appendChild(enrollElement)
 
 customerList.appendChild(customerElement)
 }
