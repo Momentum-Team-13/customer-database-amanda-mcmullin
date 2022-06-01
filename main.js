@@ -8,23 +8,23 @@ const customerList = document.querySelector('#customer-list')
 //js to build for each customer
 for (let customer of customers) {
     let customerElement = document.createElement('div')
-    customerElement.classList.add('customer')
-    let contentElement = document.createElement('article')
-    contentElement.classList.add("mw5", "center", "bg-white", "br3", "pa3", "pa4-ns", "mv3", "ba", "b--black-10")
+    customerElement.classList.add('customer', 'box')
 
 
-    //image**WORKING - BUT NEEDS HUMAN IMAGE!!!!***
+    //image**WORKING**
     let imageElement = document.createElement('img')
-    imageElement.src = "http://placekitten.com/g/600/300"
-    imageElement.alt = 'profile photo'
+    imageElement.src = `${customer.picture.large}`
+    imageElement.alt = 'customer profile photo'
     imageElement.classList.add("br-100", "h4", "w4", "dib", "ba", "b--black-05", "pa2")
     customerElement.appendChild(imageElement)
 
 
     //name**WORKING** 
     let nameElement = document.createElement('h1')
+    let firstName = `${customer.name.first[0].toUpperCase()}${customer.name.first.substring(1)}`
+    let lastName = `${customer.name.last[0].toUpperCase()}${customer.name.last.substring(1)}`
     nameElement.classList.add("f3", "mb2")
-    nameElement.innerText = `${customer.name.first} ${customer.name.last}`
+    nameElement.innerText = `${firstName} ${lastName}`
     customerElement.appendChild(nameElement)
 
 
@@ -34,25 +34,33 @@ for (let customer of customers) {
     emailElement.innerText = `${customer.email}`
     customerElement.appendChild(emailElement)
 
-    //address**WORKING**
-    let streetElement = document.createElement('h2')
-    streetElement.classList.add("f5", "fw4", "black", "mt0")
-    streetElement.innerText = `${customer.location.street.number} ${customer.location.street.name} \n ${customer.location.city}, ${customer.location.state} ${customer.location.postcode}`
-    customerElement.appendChild(streetElement)
 
-    //dob mon date, year**WORKING - NEEDS TO BE FORMATTED**
+    //address**WORKING**
+    let addressElement = document.createElement('h2')
+    let stateAbbr = (nameToAbbr(customer.location.state))
+    addressElement.classList.add("f5", "fw4", "black", "mt0")
+    // let stateAbbr = (customerState(customer.location.state))
+    addressElement.innerText = `${customer.location.street.number} ${customer.location.street.name} \n ${customer.location.city}, ${stateAbbr} ${customer.location.postcode}`
+    customerElement.appendChild(addressElement)
+
+
+    //dob mon date, year**WORKING**
     let dobElement = document.createElement('h2')
+    let dobFormat = moment(customer.dob.date).format("MMM D, YYYY")
     dobElement.classList.add("f5", "fw4", "black", "mt0")
-    dobElement.innerText = `DOB: ${customer.dob.date}`
+    dobElement.innerText = `DOB: ${dobFormat}`
     customerElement.appendChild(dobElement)
 
-    //customer since: mon, date, year**WORKING - NEEDS TO BE REFORMATTED**
+
+    //customer since: mon, date, year**WORKING**
     let enrollElement = document.createElement('h2')
+    let registeredFormat = moment(customer.registered.date).format("MMM D, YYYY")
     enrollElement.classList.add("f5", "fw4", "black", "mt0")
-    enrollElement.innerText = `Customer since: ${customer.registered.date}`
+    enrollElement.innerText = `Customer since: ${registeredFormat}`
     customerElement.appendChild(enrollElement)
 
-customerList.appendChild(customerElement)
+
+    customerList.appendChild(customerElement)
 }
 
 

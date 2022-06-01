@@ -1,3 +1,21 @@
 #customer-list {
-    border: 3px solid magenta;
+    /* border: 3px solid magenta; */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.box {
+    border: .5px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    margin: 15px 10px;
+    background-color: white;
+}
+
+h2 {
+    text-align: center;
 }
